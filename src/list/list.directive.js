@@ -1,6 +1,6 @@
-angular.module('CrimeReport').directive('crList', function() {
+angular.module('CrimeReport').directive('crList', function($templateCache) {
   return {
     restrict: 'E',
-    templateUrl: 'src/list/list.tpl.html'
+    template: $templateCache.get('list/list.tpl.html')
   }
 });

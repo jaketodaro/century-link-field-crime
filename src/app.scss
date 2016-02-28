@@ -14,10 +14,17 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1;
-  height: 100%;
+}
+
+@media screen and (orientation: landscape) {
+  .app-wrapper {
+    flex-direction: row;
+  }
 }
 
 .app-wrapper {
+  height: 100%;
+
   // needed for loading overlay
   position: relative;
 }

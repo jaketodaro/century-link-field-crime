@@ -4,6 +4,8 @@ var sequence = require('gulp-sequence');
 var autoprefixer = require('gulp-autoprefixer');
 var clean = require('gulp-clean');
 var concat = require('gulp-concat');
+var mergeStream = require('merge-stream');
+var ngTemplate = require('gulp-ngtemplate');
 var sass = require('gulp-sass');
 
 gulp.task('clean', function() {
@@ -16,8 +18,13 @@ gulp.task('copy', function() {
     .pipe(gulp.dest('dist/img'));
 });
 
-gulp.task('js', function() {
-  return gulp.src(['src/app.js', 'src/**/*.js'])
+gulp.task('js', function () {
+  var jsStream = gulp.src(['src/app.js', 'src/**/*.js']);
+
+  var templateStream = gulp.src('src/**/*.tpl.html')
+    .pipe(ngTemplate({module: 'CrimeReport'}));
+
+  return mergeStream(jsStream, templateStream)
     .pipe(concat('app.js'))
     .pipe(gulp.dest('dist'));
 });
@@ -32,7 +39,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('watch', function() {
-  gulp.watch('src/**/*.js', ['js']);
+  gulp.watch(['src/**/*.js', 'src/**/*.tpl.html'], ['js']);
   gulp.watch('src/**/*.scss', ['sass']);
 });
 

@@ -1,6 +1,10 @@
-angular.module('CrimeReport').directive('crToolbar', function() {
+angular.module('CrimeReport').directive('crToolbar', function($templateCache) {
   return {
     restrict: 'E',
-    templateUrl: 'src/toolbar/toolbar.tpl.html'
+    template: $templateCache.get('toolbar/toolbar.tpl.html'),
+    scope: {
+      numCrimes: '=',
+      numCrimesOptions: '&'
+    }
   }
 });

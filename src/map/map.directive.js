@@ -15,14 +15,10 @@ angular.module('CrimeReport').directive('crMap', function() {
         center: {lat: 0, lng: 0},
         zoom: 14,
         minZoom: 13,
-        maxZoom: 15,
+        maxZoom: 17,
         mapTypeControl: false,
         scaleControl: true,
         streetViewControl: false
-        //disableDefaultUI: true,
-        //disableDoubleClickZoom: true,
-        //draggable: false,
-        //scrollwheel: false
       });
 
       heatmap = new google.maps.visualization.HeatmapLayer({
@@ -54,6 +50,15 @@ angular.module('CrimeReport').directive('crMap', function() {
         if (_.isArray(items)) {
           heatmap.setData(items);
         }
+      });
+
+      var onResize = _.debounce(function() {
+        map.setCenter(new google.maps.LatLng(scope.lat(), scope.lng()));
+      }, 100);
+
+      $(window).on('resize', onResize);
+      scope.$on('$destroy', function() {
+        $(window).off('resize', onResize);
       });
     }
   }

@@ -1,13 +1,14 @@
 <nav class="navbar navbar-light bg-faded">
     <a class="navbar-brand" href="#">Crimes near CenturyLink Field</a>
-
     <div class="pull-right">
         <div>
             <label for="num-crimes">Most recent</label>
             <select
                     id="num-crimes"
-                    ng-model="model.numOfCrimes"
-                    ng-options="num for num in [1000, 5000, 10000, 25000, 50000]"></select>
+                    ng-model="numCrimes"
+                    ng-options="num for num in numCrimesOptions()"
+                    ng-change="onNumCrimesChanged()"
+            ></select>
             <label for="num-crimes">crimes</label>
         </div>
     </div>

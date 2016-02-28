@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css">
 
+    <link rel="icon" href="favicon.ico" />
     <link rel="stylesheet" href="dist/app.css">
 </head>
 
 <body ng-app="CrimeReport" ng-controller="AppCtrl as ctrl" ng-cloak>
 
 <div class="toolbar-wrapper">
-    <cr-toolbar></cr-toolbar>
+    <cr-toolbar
+            num-crimes="model.numCrimes"
+            num-crimes-options="appConfig.numCrimesOptions"
+    ></cr-toolbar>
 </div>
 
 <div class="app-wrapper">

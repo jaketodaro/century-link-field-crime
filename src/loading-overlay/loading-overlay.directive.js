@@ -1,6 +1,6 @@
-angular.module('CrimeReport').directive('crLoadingOverlay', function() {
+angular.module('CrimeReport').directive('crLoadingOverlay', function($templateCache) {
   return {
     restrict: 'E',
-    templateUrl: 'src/loading-overlay/Loading-overlay.tpl.html'
+    template: $templateCache.get('loading-overlay/loading-overlay.tpl.html')
   }
 });
