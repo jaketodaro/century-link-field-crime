@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html lang="en" >
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css">
+
+    <link rel="stylesheet" href="dist/app.css">
+</head>
+
+<body ng-app="CrimeReport" ng-controller="AppCtrl as ctrl" ng-cloak>
+
+<div class="toolbar-wrapper">
+    <cr-toolbar></cr-toolbar>
+</div>
+
+<div class="app-wrapper">
+    <div class="map-wrapper">
+        <cr-map lat="model.lat" lng="model.lng" heat-locations="model.heatLocations"></cr-map>
+    </div>
+
+    <div class="list-wrapper">
+        <cr-list crime-groups="model.crimesByGroup"></cr-list>
+    </div>
+
+    <cr-loading-overlay ng-if="model.isLoading"></cr-loading-overlay>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.5.1/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjbZIZDHVpCg7HGR22YhSox8koV3JVoxU&libraries=visualization,places"></script>
+
+<script src="dist/app.js"></script>
+
+</body>
+</html>

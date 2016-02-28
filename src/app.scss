@@ -1,0 +1,36 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-wrapper,
+.map-wrapper,
+.list-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+}
+
+.app-wrapper {
+  // needed for loading overlay
+  position: relative;
+}
+
+.list-wrapper {
+  padding: 10px;
+  overflow: auto;
+}
+
+cr-map {
+  flex: 1
+}
+
+@import 'loading-overlay/loading-overlay';
+@import 'toolbar/toolbar';
+@import 'list/list';

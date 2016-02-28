@@ -1,0 +1,17 @@
+cr-list {
+  th label {
+    margin: 0;
+  }
+
+  tbody tr:hover {
+    background-color: lightblue;
+  }
+
+  th,
+  td {
+    &:first-child {
+      width: 64px;
+      text-align: center;
+    }
+  }
+}

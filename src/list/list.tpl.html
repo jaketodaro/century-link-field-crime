@@ -1,0 +1,28 @@
+<div class="pull-right">
+    <label for="sort-by">Sort By</label>
+    <select
+            id="sort-by"
+            ng-model="model.sortBy"
+            ng-options="sortBy for sortBy in ['type', 'count']"></select>
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            <input id="toggle-all" type="checkbox" ng-model="model.toggleAllCheckbox" ng-change="ctrl.toggleAllCrimeGroups()">
+            <label for="toggle-all">All</label>
+        </th>
+        <th>Type</th>
+        <th>Count</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr ng-repeat="crimeGroup in model.crimeGroups | orderBy : model.sortBy : model.sortBy === 'count'">
+        <td><input type="checkbox" ng-model="crimeGroup.included" ng-change="ctrl.toggleCrimeGroup()"></td>
+        <td>{{crimeGroup.type}}</td>
+        <td>{{crimeGroup.count}}</td>
+    </tr>
+    </tbody>
+</table>
