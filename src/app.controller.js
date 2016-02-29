@@ -35,8 +35,10 @@ angular.module('CrimeReport').controller('AppCtrl', function($scope, $http, AppC
       $scope.model.isLoading = true;
       console.time('fetch');
       CrimesData.getCrimes(attrs[0], attrs[1], attrs[2]).then((crimes) => {
-        $scope.model.isLoading = false;
         console.timeEnd('fetch');
+
+        $scope.model.isLoading = false;
+        $scope.model.toggleAllCheckbox = true;
 
         console.time('process');
         $scope.model.crimeGroups = CrimesData.groupCrimes(crimes);
