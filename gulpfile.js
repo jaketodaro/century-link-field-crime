@@ -1,12 +1,14 @@
 var gulp = require('gulp');
 var sequence = require('gulp-sequence');
 
+var angularProtractor = require('gulp-angular-protractor');
 var autoprefixer = require('gulp-autoprefixer');
 var clean = require('gulp-clean');
 var concat = require('gulp-concat');
 var mergeStream = require('merge-stream');
 var ngTemplate = require('gulp-ngtemplate');
 var sass = require('gulp-sass');
+var Server = require('karma').Server;
 
 gulp.task('clean', function() {
   return gulp.src('dist')
@@ -42,5 +44,28 @@ gulp.task('watch', function() {
   gulp.watch(['src/**/*.js', 'src/**/*.tpl.html'], ['js']);
   gulp.watch('src/**/*.scss', ['sass']);
 });
+
+gulp.task('test:unit', function (done) {
+  new Server({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, done).start();
+});
+
+gulp.task('test:e2e', function(callback) {
+  gulp
+    .src(['example_spec.js'])
+    .pipe(angularProtractor({
+      'configFile': 'protractor.conf.js',
+      'debug': false,
+      'autoStartStopServer': true
+    }))
+    .on('error', function(e) {
+      console.log(e);
+    })
+    .on('end', callback);
+});
+
+gulp.task('test', ['test:unit', 'test:e2e']);
 
 gulp.task('default', sequence('clean', ['copy', 'js', 'sass']));

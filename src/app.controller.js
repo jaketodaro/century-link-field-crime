@@ -39,19 +39,8 @@ angular.module('CrimeReport').controller('AppCtrl', function($scope, $http, AppC
         console.timeEnd('fetch');
 
         console.time('process');
-        $scope.model.crimeGroups = _(crimes).groupBy(function(crime) {
-          return crime.event_clearance_group || 'OTHER';
-        }).map(function(crimes, groupKey) {
-          return {
-            type: groupKey,
-            count: crimes.length,
-            crimes: crimes,
-            included: true
-          }
-        }).value();
-
+        $scope.model.crimeGroups = CrimesData.groupCrimes(crimes);
         this.updateHeatLocations();
-
         console.timeEnd('process');
       });
     }

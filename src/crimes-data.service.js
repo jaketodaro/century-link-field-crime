@@ -10,6 +10,19 @@ angular.module('CrimeReport').service('CrimesData', function($http) {
       return $http.get(baseUrl + query, {cached: true}).then(function(result) {
         return result.data;
       });
+    },
+
+    groupCrimes: function(crimes) {
+      return _(crimes).groupBy(function(crime) {
+        return crime.event_clearance_group || 'OTHER';
+      }).map(function(crimes, groupKey) {
+        return {
+          type: groupKey,
+          count: crimes.length,
+          crimes: crimes,
+          included: true
+        }
+      }).value();
     }
   }
 });

@@ -11,12 +11,17 @@
   "license": "ISC",
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-angular-protractor": "0.0.7",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-clean": "^0.3.1",
     "gulp-concat": "^2.6.0",
     "gulp-ngtemplate": "^0.2.5",
     "gulp-sass": "^2.2.0",
     "gulp-sequence": "^0.4.5",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.21",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.7",
     "merge-stream": "^1.0.0"
   },
   "engines": {
